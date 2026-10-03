@@ -17,6 +17,27 @@
     --ui-gap: 12px;
 }
 
+.sign-out-button {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 9px 18px;
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius-sm);
+    background: var(--ui-bg-solid);
+    color: var(--ui-accent);
+    box-shadow: var(--ui-shadow);
+    font: 500 13px var(--ui-font);
+    cursor: pointer;
+}
+
+.sign-out-button:focus-visible {
+    outline: 2px solid var(--ui-accent);
+    outline-offset: 3px;
+}
+
 html, body, #map {
     width: 100%;
     height: 100%;
