@@ -606,6 +606,7 @@ map.addControl(Abstract);
 		}
 		isTracking = true;
 	  }
+	  geolocateButton.classList.toggle('active', isTracking);
 	}
 
 	geolocateButton.addEventListener('click', handleGeolocate);
@@ -645,6 +646,7 @@ let measuring = false;
 		sketch = null;
 		measuring = false;
 	  }
+	  measureButton.classList.toggle('active', measuring);
 	}
 
 	measureButton.addEventListener('click', handleMeasure);
