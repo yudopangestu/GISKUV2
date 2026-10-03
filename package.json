@@ -1,8 +1,0 @@
-{
-  "name": "yudogis",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "node scripts/prepare-site.mjs"
-  }
-}
