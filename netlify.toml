@@ -2,9 +2,6 @@
 command = "npm run build"
 publish = "dist"
 
-[functions]
-directory = "netlify/functions"
-
 [[headers]]
 for = "/*"
 [headers.values]
@@ -16,5 +13,10 @@ X-Frame-Options = "DENY"
 
 [[redirects]]
 from = "/login"
-to = "/login.html"
+to = "/"
+status = 302
+
+[[redirects]]
+from = "/login.html"
+to = "/"
 status = 302
