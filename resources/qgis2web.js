@@ -532,13 +532,13 @@ var Abstract = new ol.control.Control({
             window.showAbstract = function() {
                 linkElement.classList.remove("project-abstract");
                 linkElement.classList.add("project-abstract-uncollapsed");
-                linkElement.innerHTML = 'Peta Sebaran Perusahaan Perkebunan di Kab. Labuhanbatu<br />Jumlah Perusahaan Perkebunan Swasta 288 Bidang BUMN 88 Bidang Total 377 Bidang';
+                linkElement.innerHTML = 'Peta Sebaran Perusahaan Perkebunan di Kab. Labuhanbatu<br />Jumlah Perusahaan Perkebunan Swasta 297 Bidang BUMN 88 Bidang Total 385 Bidang';
             }
 
             hideAbstract();
         } else {
             linkElement.classList.add("project-abstract-uncollapsed");
-            linkElement.innerHTML = 'Peta Sebaran Perusahaan Perkebunan di Kab. Labuhanbatu<br />Jumlah Perusahaan Perkebunan Swasta 288 Bidang BUMN 88 Bidang Total 377 Bidang';
+            linkElement.innerHTML = 'Peta Sebaran Perusahaan Perkebunan di Kab. Labuhanbatu<br />Jumlah Perusahaan Perkebunan Swasta 297 Bidang BUMN 88 Bidang Total 385 Bidang';
         }
 
         titleElement.appendChild(linkElement);
