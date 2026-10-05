@@ -555,7 +555,7 @@ map.addControl(Abstract);
 
 	const geolocateButton = document.createElement('button');
 	geolocateButton.className = 'geolocate-button fa fa-map-marker';
-	geolocateButton.title = 'Geolocalizza';
+	geolocateButton.title = 'My location';
 
 	const geolocateControl = document.createElement('div');
 	geolocateControl.className = 'ol-unselectable ol-control geolocate';
