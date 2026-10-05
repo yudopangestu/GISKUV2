@@ -723,3 +723,60 @@ ul.photon-autocomplete {
     color: var(--muted);
     font-size: 11px;
 }
+
+/* ---------- Abstract pie chart ---------- */
+
+#abstract .project-abstract-uncollapsed {
+    padding: 8px 10px;
+    font-size: 11px;
+    line-height: 1.35;
+}
+.abstract-pie-title {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    max-width: 190px;
+}
+.abstract-pie {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.abstract-pie svg {
+    flex: none;
+}
+.abstract-pie-legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 110px;
+}
+.abstract-pie-legend li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 1px 0;
+}
+.abstract-pie-swatch {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex: none;
+}
+.abstract-pie-label {
+    flex: 1;
+}
+.abstract-pie-value {
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+.abstract-pie-value small {
+    color: var(--muted);
+    font-size: 10px;
+}
+.abstract-pie-total {
+    border-top: 1px solid var(--border);
+    margin-top: 3px;
+    padding-top: 3px !important;
+    padding-left: 13px !important;
+}
