@@ -534,7 +534,7 @@ function abstractPieChartHTML() {
             '<span class="abstract-pie-label">' + d.label + '</span>' +
             '<span class="abstract-pie-value">' + d.value + ' <small>(' + Math.round(d.value / total * 100) + '%)</small></span></li>';
     }).join('');
-    return '<div class="abstract-pie-title">Peta Sebaran Perusahaan Perkebunan di Kab. Labuhanbatu</div>' +
+    return '<div class="abstract-pie-title">Peta Sebaran Perusahaan Perkebunan di Kab. Labuhanbatu & Labuhanbatu Utara</div>' +
         '<div class="abstract-pie">' +
         '<svg viewBox="0 0 96 96" width="60" height="60" role="img" aria-label="Jumlah bidang perkebunan: Swasta 297, BUMN 88, total 385">' + slices + '</svg>' +
         '<ul class="abstract-pie-legend">' + legend +
