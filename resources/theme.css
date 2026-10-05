@@ -38,11 +38,11 @@ html, body, #map {
 .ol-control button,
 .layer-switcher button,
 .layer-switcher.shown.layer-switcher-activation-mode-click > button {
-    width: 36px !important;
-    height: 36px !important;
+    width: 40px !important;
+    height: 40px !important;
     margin: 0 !important;
     border: 0 !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
     background-color: var(--surface) !important;
     color: var(--text) !important;
     font-family: var(--font) !important;
@@ -79,7 +79,7 @@ html, body, #map {
 .measure-control,
 .photon-geocoder-autocomplete,
 .search-layer {
-    margin-top: 8px !important;
+    margin-top: 12px !important;
     margin-left: 8px !important;
 }
 
@@ -89,7 +89,7 @@ html, body, #map {
     display: flex;
     flex-direction: column;
     background: var(--surface) !important;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: var(--shadow);
     overflow: hidden;
 }
@@ -97,10 +97,15 @@ html, body, #map {
     box-shadow: none !important;
     border-radius: 0 !important;
     background: transparent !important;
-    font-size: 18px !important;
+    font-size: 22px !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
 }
 .ol-zoom .ol-zoom-in {
-    border-bottom: 1px solid var(--border) !important;
+    height: 44px !important;
+}
+.ol-zoom .ol-zoom-out {
+    height: 44px !important;
 }
 
 .geolocate,
@@ -119,7 +124,7 @@ html, body, #map {
     align-items: center;
     gap: 6px;
     padding: 0 10px !important;
-    height: 36px;
+    height: 40px;
     background: var(--surface);
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -157,7 +162,7 @@ html, body, #map {
 }
 .photon-input,
 .photon-input:focus {
-    height: 36px;
+    height: 40px;
     width: 220px;
     padding: 0 12px;
     border: 0;
@@ -441,13 +446,13 @@ ul.photon-autocomplete {
 .shp-upload-control {
     clear: both;
     position: relative;
-    margin-top: 8px !important;
+    margin-top: 12px !important;
     margin-left: 8px !important;
 }
 .shp-upload-panel {
     position: absolute;
     top: 0;
-    left: 44px;
+    left: 50px;
     width: 280px;
     padding: 12px;
     background: var(--surface);
@@ -519,4 +524,31 @@ ul.photon-autocomplete {
 .ol-control .shp-upload-list button:hover { color: var(--text) !important; }
 @media (max-width: 650px) {
     .shp-upload-panel { width: calc(100vw - 80px); }
+}
+
+/* ---------- Toolbar icons (outline style) ---------- */
+.ol-control .geolocate-button::before,
+.ol-control .measure-button::before,
+.ol-control .gcd-gl-btn::before,
+.ol-control .shp-upload-button::before {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin: auto;
+    background-color: currentColor;
+    -webkit-mask: var(--icon) center / contain no-repeat;
+    mask: var(--icon) center / contain no-repeat;
+}
+.ol-control .geolocate-button {
+    --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12h3M19 12h3M12 2v3M12 19v3'/%3E%3Ccircle cx='12' cy='12' r='7'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+}
+.ol-control .measure-button {
+    --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z'/%3E%3Cpath d='m14.5 12.5 2-2M11.5 9.5l2-2M8.5 6.5l2-2M17.5 15.5l2-2'/%3E%3C/svg%3E");
+}
+.ol-control .gcd-gl-btn {
+    --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+}
+.ol-control .shp-upload-button {
+    --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M16 7l-4-4-4 4M12 3v13'/%3E%3C/svg%3E");
 }
