@@ -510,6 +510,38 @@ map.addControl(Title)
     
 //abstract
 
+// Pie chart of plantation parcels by ownership type (Swasta vs BUMN)
+function abstractPieChartHTML() {
+    var data = [
+        { label: 'Swasta', value: 297, color: '#e8790f' },
+        { label: 'BUMN', value: 88, color: '#475569' }
+    ];
+    var total = data.reduce(function(sum, d) { return sum + d.value; }, 0);
+    var r = 44, cx = 48, cy = 48, angle = -Math.PI / 2;
+    var slices = data.map(function(d) {
+        var sweep = d.value / total * 2 * Math.PI;
+        var x1 = cx + r * Math.cos(angle), y1 = cy + r * Math.sin(angle);
+        angle += sweep;
+        var x2 = cx + r * Math.cos(angle), y2 = cy + r * Math.sin(angle);
+        var large = sweep > Math.PI ? 1 : 0;
+        return '<path d="M' + cx + ',' + cy + ' L' + x1.toFixed(2) + ',' + y1.toFixed(2) +
+            ' A' + r + ',' + r + ' 0 ' + large + ' 1 ' + x2.toFixed(2) + ',' + y2.toFixed(2) + ' Z"' +
+            ' fill="' + d.color + '" stroke="#fff" stroke-width="2" stroke-linejoin="round">' +
+            '<title>' + d.label + ': ' + d.value + ' Bidang (' + (d.value / total * 100).toFixed(1) + '%)</title></path>';
+    }).join('');
+    var legend = data.map(function(d) {
+        return '<li><span class="abstract-pie-swatch" style="background:' + d.color + '"></span>' +
+            '<span class="abstract-pie-label">' + d.label + '</span>' +
+            '<span class="abstract-pie-value">' + d.value + ' <small>(' + Math.round(d.value / total * 100) + '%)</small></span></li>';
+    }).join('');
+    return '<div class="abstract-pie-title">Peta Sebaran Perusahaan Perkebunan di Kab. Labuhanbatu</div>' +
+        '<div class="abstract-pie">' +
+        '<svg viewBox="0 0 96 96" width="60" height="60" role="img" aria-label="Jumlah bidang perkebunan: Swasta 297, BUMN 88, total 385">' + slices + '</svg>' +
+        '<ul class="abstract-pie-legend">' + legend +
+        '<li class="abstract-pie-total"><span class="abstract-pie-label">Total</span><span class="abstract-pie-value">' + total + ' Bidang</span></li>' +
+        '</ul></div>';
+}
+
 var Abstract = new ol.control.Control({
     element: (() => {
         var titleElement = document.createElement('div');
@@ -532,13 +564,13 @@ var Abstract = new ol.control.Control({
             window.showAbstract = function() {
                 linkElement.classList.remove("project-abstract");
                 linkElement.classList.add("project-abstract-uncollapsed");
-                linkElement.innerHTML = 'Peta Sebaran Perusahaan Perkebunan di Kab. Labuhanbatu<br />Jumlah Perusahaan Perkebunan Swasta 297 Bidang BUMN 88 Bidang Total 385 Bidang';
+                linkElement.innerHTML = abstractPieChartHTML();
             }
 
             hideAbstract();
         } else {
             linkElement.classList.add("project-abstract-uncollapsed");
-            linkElement.innerHTML = 'Peta Sebaran Perusahaan Perkebunan di Kab. Labuhanbatu<br />Jumlah Perusahaan Perkebunan Swasta 297 Bidang BUMN 88 Bidang Total 385 Bidang';
+            linkElement.innerHTML = abstractPieChartHTML();
         }
 
         titleElement.appendChild(linkElement);
