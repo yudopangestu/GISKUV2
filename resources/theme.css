@@ -1056,3 +1056,62 @@ ul.photon-autocomplete {
     padding-top: 3px !important;
     padding-left: 13px !important;
 }
+
+/* ---------- Layer transparency slider ---------- */
+
+.layer-switcher li.layer > .layer-switcher-opacity {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 8px 4px 2.6em;
+    padding: 0;
+}
+.layer-switcher-opacity-icon {
+    flex: 0 0 auto;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1.5px solid var(--muted);
+    background: linear-gradient(90deg, var(--muted) 50%, transparent 50%);
+    box-sizing: border-box;
+}
+.layer-switcher li .layer-switcher-opacity input[type="range"] {
+    position: static;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 80px;
+    height: 4px;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent) var(--fill, 0%), rgba(15, 23, 42, 0.12) var(--fill, 0%));
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+.layer-switcher-opacity input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--accent);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.2);
+}
+.layer-switcher-opacity input[type="range"]::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--accent);
+}
+.layer-switcher-opacity-value {
+    flex: 0 0 auto;
+    min-width: 32px;
+    text-align: right;
+    font-size: 11px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}

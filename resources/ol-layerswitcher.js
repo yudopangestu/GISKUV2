@@ -483,8 +483,51 @@ class LayerSwitcher extends Control {
                 }
             }
             li.appendChild(label);
+            li.appendChild(LayerSwitcher.renderOpacity_(lyr));
         }
         return li;
+    }
+    /**
+     * Render a transparency slider for a single layer.
+     * @param lyr Layer whose opacity is controlled.
+     * @protected
+     */
+    static renderOpacity_(lyr) {
+        const wrap = document.createElement('div');
+        wrap.className = CSS_PREFIX + 'opacity';
+        const icon = document.createElement('span');
+        icon.className = CSS_PREFIX + 'opacity-icon';
+        icon.title = 'Transparansi';
+        const slider = document.createElement('input');
+        slider.type = 'range';
+        slider.min = '0';
+        slider.max = '100';
+        slider.step = '1';
+        slider.setAttribute('aria-label', 'Transparansi layer');
+        const value = document.createElement('span');
+        value.className = CSS_PREFIX + 'opacity-value';
+        const sync = function () {
+            const transparency = Math.round((1 - lyr.getOpacity()) * 100);
+            slider.value = String(transparency);
+            value.textContent = transparency + '%';
+            slider.style.setProperty('--fill', transparency + '%');
+        };
+        sync();
+        slider.title = 'Transparansi: geser ke kanan untuk lebih transparan';
+        slider.addEventListener('input', function () {
+            lyr.setOpacity(1 - Number(slider.value) / 100);
+            value.textContent = slider.value + '%';
+            slider.style.setProperty('--fill', slider.value + '%');
+        });
+        ['click', 'mousedown', 'pointerdown', 'touchstart', 'dblclick'].forEach(function (evt) {
+            wrap.addEventListener(evt, function (e) {
+                e.stopPropagation();
+            });
+        });
+        wrap.appendChild(icon);
+        wrap.appendChild(slider);
+        wrap.appendChild(value);
+        return wrap;
     }
     /**
      * Render all layers that are children of a group.
