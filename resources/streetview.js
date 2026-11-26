@@ -25,7 +25,7 @@
             '<strong>Google Street View</strong>' +
             '<button type="button" class="streetview-close" title="Tutup">&times;</button>' +
         '</div>' +
-        '<p class="streetview-hint">Klik lokasi pada peta untuk melihat Street View.</p>' +
+        '<p class="streetview-hint">Klik jalur biru pada peta untuk melihat Street View.</p>' +
         '<div class="streetview-result" hidden>' +
             '<div class="streetview-frame"><iframe title="Google Street View" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe></div>' +
             '<div class="streetview-coords"></div>' +
@@ -56,6 +56,17 @@
             })
         }),
         zIndex: 1000
+    });
+
+    // Street View coverage highlight (blue lines/dots like Google Maps)
+    var coverageLayer = new ol.layer.Tile({
+        source: new ol.source.XYZ({
+            url: 'https://mts{0-3}.googleapis.com/vt?hl=en&lyrs=svv|cb_client:apiv3&style=40,18&x={x}&y={y}&z={z}',
+            crossOrigin: null,
+            maxZoom: 21
+        }),
+        opacity: 0.9,
+        zIndex: 999
     });
 
     // ---------- Events ----------
@@ -95,10 +106,14 @@
         toggleButton.classList.toggle('is-active', active);
         map.getTargetElement().classList.toggle('streetview-picking', active);
         if (active) {
+            if (map.getLayers().getArray().indexOf(coverageLayer) === -1) {
+                map.addLayer(coverageLayer);
+            }
             if (map.getLayers().getArray().indexOf(markerLayer) === -1) {
                 map.addLayer(markerLayer);
             }
         } else {
+            map.removeLayer(coverageLayer);
             map.removeLayer(markerLayer);
             markerFeature.setGeometry(null);
             resultEl.hidden = true;
