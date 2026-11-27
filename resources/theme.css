@@ -882,6 +882,7 @@ ul.photon-autocomplete {
 .ol-control .shp-upload-button::before,
 .ol-control .streetview-button::before,
 .ol-control .sathistory-button::before,
+.ol-control .pin-button::before,
 .ol-control .hgu-search-button::before {
     content: "";
     display: block;
@@ -914,6 +915,132 @@ ul.photon-autocomplete {
 
 .ol-control .hgu-search-button {
     --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6l6-3 6 3 6-3v8'/%3E%3Cpath d='M3 6v15l6-3 3 1.5'/%3E%3Cpath d='M9 3v15M15 6v5'/%3E%3Ccircle cx='17' cy='17' r='3'/%3E%3Cpath d='m22 22-2.8-2.8'/%3E%3C/svg%3E");
+}
+
+.ol-control .pin-button {
+    --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");
+}
+
+/* ---------- Titik / Pin ---------- */
+.pin-control {
+    clear: both;
+    position: relative;
+    margin-top: 12px !important;
+    margin-left: 8px !important;
+}
+.ol-control .pin-button.is-active {
+    background: var(--accent) !important;
+    color: #fff !important;
+}
+#map.pin-placing .ol-viewport { cursor: crosshair; }
+.pin-panel {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 300px;
+    padding: 12px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    font-size: 13px;
+    color: var(--text);
+    z-index: 10;
+}
+.pin-panel[hidden], .pin-actions[hidden] { display: none; }
+.pin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.ol-control .pin-close {
+    width: 24px !important;
+    height: 24px !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    color: var(--muted) !important;
+    font-size: 18px !important;
+}
+.pin-mode { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.pin-mode input { accent-color: var(--accent); margin: 0; }
+.pin-colors { display: flex; gap: 6px; margin: 10px 0; }
+.ol-control .pin-colors .pin-color {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    background: var(--pin-color) !important;
+    box-shadow: 0 0 0 1px var(--border) !important;
+}
+.ol-control .pin-colors .pin-color.is-active {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--pin-color) !important;
+}
+.pin-coord-form { display: flex; gap: 6px; }
+.pin-coord-input {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 8px;
+    border: 1px solid rgba(15, 23, 42, 0.15);
+    border-radius: 8px;
+    font: inherit;
+    color: var(--text);
+}
+.pin-coord-input:focus { outline: none; border-color: var(--accent); }
+.ol-control .pin-coord-form .pin-add,
+.ol-control .pin-actions button {
+    width: auto !important;
+    height: 30px !important;
+    padding: 0 10px !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+}
+.ol-control .pin-coord-form .pin-add {
+    background: var(--accent) !important;
+    color: #fff !important;
+}
+.pin-status { margin-top: 8px; font-size: 12px; color: var(--muted); }
+.pin-status:empty { display: none; }
+.pin-status.is-error { color: #b42318; }
+.pin-list { list-style: none; margin: 6px 0 0; padding: 0; max-height: 240px; overflow-y: auto; }
+.pin-list:empty { display: none; }
+.pin-list li {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 0;
+    border-top: 1px solid var(--border);
+}
+.pin-swatch { flex: none; width: 10px; height: 10px; margin-right: 4px; border-radius: 50%; }
+.pin-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.pin-name {
+    width: 100%;
+    padding: 1px 2px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    font: inherit;
+    font-weight: 600;
+    color: var(--text);
+}
+.pin-name:hover { border-color: var(--border); }
+.pin-name:focus { outline: none; border-color: var(--accent); background: #fff; }
+.pin-coords { padding: 0 3px; font-family: monospace; color: var(--muted); }
+.ol-control .pin-list .pin-icon-btn {
+    flex: none;
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 12px !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    color: var(--muted) !important;
+}
+.ol-control .pin-list .pin-icon-btn:hover { color: var(--text) !important; }
+.pin-actions { display: flex; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+.ol-control .pin-actions button { background: rgba(15, 23, 42, 0.05) !important; }
+.ol-control .pin-actions .pin-clear { margin-left: auto !important; color: #b42318 !important; }
+@media (max-width: 650px) {
+    .pin-panel { width: calc(100vw - 80px); }
 }
 
 /* ---------- North direction menu ---------- */
