@@ -710,8 +710,8 @@ let measuring = false;
     typeSelect.id = "type";
 
     var measurementOption = [
-        { value: "LineString", description: "Length" },
-        { value: "Polygon", description: "Area" }
+        { value: "LineString", description: "Length (m)" },
+        { value: "Polygon", description: "Area (Ha)" }
         ];
     measurementOption.forEach(function (option) {
         var optionElement = document.createElement("option");
@@ -971,13 +971,7 @@ let measuring = false;
         length += ol.sphere.getDistance(c1, c2);
       }
     var output;
-    if (length > 100) {
-      output = (Math.round(length / 1000 * 100) / 100) +
-          ' ' + 'km';
-    } else {
-      output = (Math.round(length * 100) / 100) +
-          ' ' + 'm';
-    }
+    output = (Math.round(length * 100) / 100) + ' ' + 'm';
     return output;
   };
 
@@ -991,11 +985,8 @@ let measuring = false;
 		var geom = polygon.clone().transform(sourceProj, 'EPSG:3857');
 		var area = Math.abs(ol.sphere.getArea(geom));
 		var output;
-		if (area > 1000000) {
-			output = Math.round((area / 1000000) * 1000) / 1000 + ' ' + 'km<sup>2</sup>';
-		} else {
-			output = Math.round(area * 100) / 100 + ' ' + 'm<sup>2</sup>';
-		}
+		// 1 Ha = 10,000 m²
+		output = Math.round((area / 10000) * 10000) / 10000 + ' ' + 'Ha';
 		return output.replace('.', ',');
 	};
 
